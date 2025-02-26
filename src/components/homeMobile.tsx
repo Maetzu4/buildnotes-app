@@ -1,28 +1,22 @@
 import { Profile } from "@/components/profile";
 import { MobileOptions } from "./mobileOptions";
+import { MobileContent } from "./mobileContent";
 
 export default function HomeMobile() {
   return (
-    <div className="w-screen h-screen flex flex-col p-4">
+    <div className="w-screen h-screen flex flex-col">
       {/* Componente Profile fijo en la parte superior */}
-      <div className="sticky top-0 z-10">
+      <div className="fixed top-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md shadow-lg z-10 px-4 pt-2 rounded-sm">
         <Profile Toggle={true} />
       </div>
 
       {/* Contenido en medio */}
-      <div className="pt-2 flex-1 overflow-y-auto">
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
-        <div className="h-96 bg-gray-300 rounded-lg p-4 mb-4"></div>
+      <div className="pb-10 pt-14 flex-1 px-4">
+        <MobileContent />
       </div>
+
       {/* Botones fijos en la parte inferior */}
-      <div className="sticky bottom-0 px-4 py-2 z-20">
+      <div className="fixed bottom-0 left-0 w-full bg-black bg-opacity-40 backdrop-blur-md shadow-lg z-10 px-4 py-1 rounded-sm">
         <MobileOptions />
       </div>
     </div>
