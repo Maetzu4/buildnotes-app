@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ModeToggle } from "./modeToggle";
 import { Settings } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface ProfileProps {
   Toggle: boolean;
@@ -19,9 +20,13 @@ export const Profile: React.FC<ProfileProps> = ({ Toggle }) => {
         </Avatar>
         <h2>Nate4</h2>
       </div>
-      <div className="flex justify-center text-violet-600">
+      <div className="flex justify-center">
         {toggle && <ModeToggle />}
-        {!toggle && <Settings size={22} className="text-violet-600" />}
+        {!toggle && (
+          <Button className="bg-transparent px-3 rounded-sm dark:text-white text-black">
+            <Settings />
+          </Button>
+        )}
       </div>
     </div>
   );

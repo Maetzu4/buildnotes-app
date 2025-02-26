@@ -19,10 +19,10 @@ export function ModeToggle() {
       aria-label="Toggle theme"
       pressed={theme === "dark"} // El estado inicial depende del tema actual
       onPressedChange={handleToggle} // Cambiamos el tema cuando se hace toggle
-      className="relative inline-flex items-center justify-center bg-transparent dark:bg-transparent dark:hover:bg-zinc-900 group"
+      className="relative inline-flex items-center justify-center bg-transparent dark:bg-transparent dark:hover:bg-violet-800 hover:bg-violet-800 hover:text-black"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 group-hover:text-violet-600" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 dark:text-violet-600 " />
+      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
     </Toggle>
   );
 }
