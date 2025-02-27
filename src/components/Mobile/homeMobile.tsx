@@ -5,6 +5,8 @@ import { Profile } from "@/components/profile";
 import { MobileOptions } from "./mobileOptions";
 import { MobileHome } from "./mobileHome";
 import { MobileSearch } from "./mobileSearch";
+import { MobileSettings } from "./mobileSettings";
+import { MobileNew } from "./mobileNew";
 
 export default function HomeMobile() {
   const [activePage, setActivePage] = useState("home"); // Página por defecto
@@ -16,11 +18,9 @@ export default function HomeMobile() {
       case "search":
         return <MobileSearch />;
       case "settings":
-        return <div>Hola configuracion</div>;
-      // return <MobileSettings />;
+        return <MobileSettings />;
       case "book":
-        return <div>Hola nuevo</div>;
-      // return <MobileNew />;
+        return <MobileNew />;
       default:
         return <MobileHome />;
     }
