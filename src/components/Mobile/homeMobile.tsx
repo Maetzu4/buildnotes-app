@@ -27,7 +27,7 @@ export default function HomeMobile() {
   };
 
   return (
-    <div className="w-screen h-screen flex flex-col bg-white dark:bg-black dark:text-white text-black duration-300">
+    <div className="flex flex-col bg-white dark:bg-black dark:text-white text-black duration-300">
       {/* Componente Profile fijo en la parte superior */}
       <div className="fixed top-0 left-0 w-full dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 pt-2 rounded-sm duration-300">
         <Profile Toggle={true} />

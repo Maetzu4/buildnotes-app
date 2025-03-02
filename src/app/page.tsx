@@ -2,7 +2,7 @@ import HomeMobile from "@/components/Mobile/homeMobile";
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen">
+    <div>
       <div className="sm:hidden">
         <HomeMobile />
       </div>
