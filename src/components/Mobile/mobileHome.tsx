@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import Link from "next/link";
 
 export const MobileHome = () => {
   // Estado para almacenar las notas
@@ -89,10 +90,10 @@ export const MobileHome = () => {
 
   return (
     <div className="overflow-auto p-4">
-      <h3 className="text-2xl text-center">Buenas noches</h3>
+      <h3 className="text-3xl font-bold text-center">Buenas noches</h3>
       {/* Mostrar las notas recientes */}
       <div className="mt-6">
-        <h4 className="text-xl font-bold">Recientes</h4>
+        <h4 className="text-xl font-semibold">Recientes</h4>
         <ScrollArea className="w-full rounded-md">
           <div className="flex pt-4">
             {notasRecientes.map((nota) => (
@@ -110,15 +111,17 @@ export const MobileHome = () => {
       </div>
       {/* Mostrar todas las notas en forma de lista */}
       <div>
-        <h4 className="text-xl font-bold">Todas las notas</h4>
-        <ul className="space-y-4 mt-4">
+        <h4 className="text-xl font-semibold">Todas las notas</h4>
+        <ul className="space-y-4 mt-2">
           {notas.map((nota) => (
             <li
               key={nota.id}
               className="p-4 rounded-lg shadow-sm border-violet-600 border-b-2"
             >
-              <h5 className="font-semibold pb-2">{nota.nombre}</h5>
-              <p className="text-xs line-clamp-2">{nota.contenido}</p>
+              <Link href={`/nota/${nota.id}`}>
+                <h5 className="font-semibold pb-2">{nota.nombre}</h5>
+                <p className="text-xs line-clamp-2">{nota.contenido}</p>
+              </Link>
             </li>
           ))}
         </ul>
