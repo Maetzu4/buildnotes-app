@@ -7,14 +7,15 @@ export default async function Nota({
 }: {
   params: Promise<{ id: number }>;
 }) {
-  //const id = (await params).id;
+  const id = (await params).id;
 
   return (
     <div>
-      <div className="flex p-3">
+      <div className="grid grid-cols-2 p-3">
         <Link href={"/"}>
           <ArrowLeft />
         </Link>
+        <p className="text-lg">{id}</p>
       </div>
       <div className="px-8">
         <h4 className="text-2xl font-bold text-center mb-4">
