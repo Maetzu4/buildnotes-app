@@ -101,8 +101,10 @@ export const MobileHome = () => {
                 key={nota.id}
                 className="w-32 h-32 bg-violet-400 p-3 rounded-xl mr-4 mb-4"
               >
-                <h4 className="font-semibold text-sm pb-2">{nota.nombre}</h4>
-                <p className="text-xs line-clamp-4">{nota.contenido}</p>
+                <Link href={`/nota/${nota.id}`} className="w-full h-full">
+                  <h4 className="font-semibold text-sm pb-2">{nota.nombre}</h4>
+                  <p className="text-xs line-clamp-4">{nota.contenido}</p>
+                </Link>
               </div>
             ))}
           </div>
@@ -118,7 +120,7 @@ export const MobileHome = () => {
               key={nota.id}
               className="p-4 rounded-lg shadow-sm border-violet-600 border-b-2"
             >
-              <Link href={`/nota/${nota.id}`}>
+              <Link href={`/nota/${nota.id}`} className="w-full h-full">
                 <h5 className="font-semibold pb-2">{nota.nombre}</h5>
                 <p className="text-xs line-clamp-2">{nota.contenido}</p>
               </Link>
