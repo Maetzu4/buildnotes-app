@@ -28,7 +28,7 @@ export const MobileHome = () => {
         setNotas(data);
         setLoading(false);
       } catch (error) {
-        setError("No se pudo cargar las notas");
+        setError("No se pudo cargar las notas" + error);
         setLoading(false);
       }
     };
