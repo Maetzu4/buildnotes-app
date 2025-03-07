@@ -2,7 +2,7 @@ import HomeMobile from "@/components/Mobile/homeMobile";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-white dark:bg-black dark:text-white text-black duration-300">
       <div className="sm:hidden">
         <HomeMobile />
       </div>

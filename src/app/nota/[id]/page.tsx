@@ -1,13 +1,45 @@
+"use client";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default async function Nota({
-  params,
-}: {
-  params: Promise<{ id: number }>;
-}) {
-  const id = (await params).id;
+interface Note {
+  title: string;
+  content: string;
+}
+export default function Nota({ params }: { params: Promise<{ id: number }> }) {
+  const [note, setNote] = useState<Note | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const [id, setId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const id = (await params).id;
+      setId(id);
+
+      try {
+        const response = await fetch(`/api/notes/${id}`);
+        const data = await response.json();
+        if (response.ok) {
+          setNote(data);
+        } else {
+          setError(data.error || "Error fetching note");
+        }
+      } catch (err) {
+        setError("Error fetching note" + err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [params]);
+
+  if (loading) return <div>Loading...</div>;
+
+  if (error) return <div className="text-center text-red-500">{error}</div>;
 
   return (
     <div>
@@ -18,63 +50,8 @@ export default async function Nota({
         <p className="text-lg">{id}</p>
       </div>
       <div className="px-8">
-        <h4 className="text-2xl font-bold text-center mb-4">
-          nombre de la nota
-        </h4>
-        <p className="text-justify">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda
-          quos animi facere. Saepe voluptatibus aut autem maxime nulla, totam,
-          harum illo officiis dignissimos ipsum odio, praesentium qui molestiae
-          alias maiores?Lorem ipsum, dolor sit amet consectetur adipisicing
-          elit. Assumenda quos animi facere. Saepe voluptatibus aut autem maxime
-          nulla, totam, harum illo officiis dignissimos ipsum odio, praesentium
-          qui molestiae alias maiores?Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Assumenda quos animi facere. Saepe voluptatibus aut
-          autem maxime nulla, totam, harum illo officiis dignissimos ipsum odio,
-          praesentium qui molestiae alias maiores?Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Assumenda quos animi facere. Saepe
-          voluptatibus aut autem maxime nulla, totam, harum illo officiis
-          dignissimos ipsum odio, praesentium qui molestiae alias maiores? Lorem
-          ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quos
-          animi facere. Saepe voluptatibus aut autem maxime nulla, totam, harum
-          illo officiis dignissimos ipsum odio, praesentium qui molestiae alias
-          maiores?Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Assumenda quos animi facere. Saepe voluptatibus aut autem maxime
-          nulla, totam, harum illo officiis dignissimos ipsum odio, praesentium
-          qui molestiae alias maiores?Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Assumenda quos animi facere. Saepe voluptatibus aut
-          autem maxime nulla, totam, harum illo officiis dignissimos ipsum odio,
-          praesentium qui molestiae alias maiores?Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Assumenda quos animi facere. Saepe
-          voluptatibus aut autem maxime nulla, totam, harum illo officiis
-          dignissimos ipsum odio, praesentium qui molestiae alias maiores?Lorem
-          ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quos
-          animi facere. Saepe voluptatibus aut autem maxime nulla, totam, harum
-          illo officiis dignissimos ipsum odio, praesentium qui molestiae alias
-          maiores?Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Assumenda quos animi facere. Saepe voluptatibus aut autem maxime
-          nulla, totam, harum illo officiis dignissimos ipsum odio, praesentium
-          qui molestiae alias maiores?Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Assumenda quos animi facere. Saepe voluptatibus aut
-          autem maxime nulla, totam, harum illo officiis dignissimos ipsum odio,
-          praesentium qui molestiae alias maiores?Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Assumenda quos animi facere. Saepe
-          voluptatibus aut autem maxime nulla, totam, harum illo officiis
-          dignissimos ipsum odio, praesentium qui molestiae alias maiores?Lorem
-          ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quos
-          animi facere. Saepe voluptatibus aut autem maxime nulla, totam, harum
-          illo officiis dignissimos ipsum odio, praesentium qui molestiae alias
-          maiores?Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Assumenda quos animi facere. Saepe voluptatibus aut autem maxime
-          nulla, totam, harum illo officiis dignissimos ipsum odio, praesentium
-          qui molestiae alias maiores?Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Assumenda quos animi facere. Saepe voluptatibus aut
-          autem maxime nulla, totam, harum illo officiis dignissimos ipsum odio,
-          praesentium qui molestiae alias maiores?Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Assumenda quos animi facere. Saepe
-          voluptatibus aut autem maxime nulla, totam, harum illo officiis
-          dignissimos ipsum odio, praesentium qui molestiae alias maiores?
-        </p>
+        <h4 className="text-2xl font-bold text-center mb-4">{note?.title}</h4>
+        <p className="text-justify">{note?.content}</p>
       </div>
     </div>
   );
