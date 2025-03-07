@@ -59,8 +59,10 @@ export function MobileNew() {
   }
 
   return (
-    <div>
-      <h1>Crear nueva nota</h1>
+    <div className="p-4">
+      <div className="mb-4">
+        <h1 className="text-lg">Crear nueva nota (beta)</h1>
+      </div>
 
       {/* Formulario */}
       <Form {...form}>
@@ -73,7 +75,11 @@ export function MobileNew() {
               <FormItem>
                 <FormLabel>Título</FormLabel>
                 <FormControl>
-                  <Input placeholder="Escribe el título" {...field} />
+                  <Input
+                    placeholder="Escribe el título"
+                    {...field}
+                    className="bg-transparent"
+                  />
                 </FormControl>
                 <FormDescription>
                   Este será el título de tu nota.
@@ -93,7 +99,11 @@ export function MobileNew() {
               <FormItem>
                 <FormLabel>Contenido</FormLabel>
                 <FormControl>
-                  <Input placeholder="Escribe el contenido" {...field} />
+                  <Input
+                    placeholder="Escribe el contenido"
+                    {...field}
+                    className="bg-transparent"
+                  />
                 </FormControl>
                 <FormDescription>
                   Este será el contenido de tu nota.

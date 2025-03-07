@@ -29,7 +29,7 @@ export default function HomeMobile() {
   return (
     <div className="flex flex-col">
       {/* Componente Profile fijo en la parte superior */}
-      <div className="fixed top-0 left-0 w-full dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 pt-2 rounded-sm duration-300">
+      <div className="fixed top-0 left-0 w-full dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 pt-2 rounded-sm">
         <Profile Toggle={true} />
       </div>
 
@@ -39,7 +39,7 @@ export default function HomeMobile() {
       </div>
 
       {/* Botones fijos en la parte inferior */}
-      <div className="fixed bottom-0 left-0 w-full dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 py-1 rounded-sm duration-300">
+      <div className="fixed bottom-0 left-0 w-full dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 py-1 rounded-sm">
         <MobileOptions setActivePage={setActivePage} />
         {/* Pasamos la función para actualizar la página */}
       </div>
