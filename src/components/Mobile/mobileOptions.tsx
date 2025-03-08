@@ -5,6 +5,7 @@ import { BookPlus, House, Search, Settings } from "lucide-react";
 
 interface MobileOptionsProps {
   setActivePage: (page: string) => void;
+  setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ButtonProps {
@@ -16,6 +17,7 @@ interface ButtonProps {
 
 export const MobileOptions: React.FC<MobileOptionsProps> = ({
   setActivePage,
+  setIsDrawerOpen,
 }) => {
   const [activeButton, setActiveButton] = useState("home");
 
@@ -49,6 +51,11 @@ export const MobileOptions: React.FC<MobileOptionsProps> = ({
   const handleButtonClick = (page: string) => {
     setActiveButton(page);
     setActivePage(page);
+    if (page === "search") {
+      setIsDrawerOpen(true); // Abre el drawer si se selecciona la opción de búsqueda
+      setActiveButton("home");
+      setActivePage("home"); // Cambia el botón activo a inicio
+    }
   };
 
   return (

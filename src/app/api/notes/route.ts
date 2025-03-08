@@ -26,9 +26,19 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const searchTerm = url.searchParams.get("search") || "";
+
   try {
-    const notes = await prisma.note.findMany();
+    const notes = await prisma.note.findMany({
+      where: {
+        OR: [
+          { title: { contains: searchTerm, mode: "insensitive" } },
+          { content: { contains: searchTerm, mode: "insensitive" } },
+        ],
+      },
+    });
     return new Response(JSON.stringify(notes), { status: 200 });
   } catch {
     return new Response(JSON.stringify({ error: "Error fetching notes" }), {
