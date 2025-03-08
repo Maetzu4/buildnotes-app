@@ -68,7 +68,7 @@ export const MobileHome = () => {
                 className="w-32 h-32 bg-violet-700 p-3 rounded-xl mr-4 mb-4"
               >
                 <Link href={`/nota/${nota.id}`} className="w-full h-full">
-                  <h4 className="font-semibold text-sm pb-2 line-clamp-1">
+                  <h4 className="font-semibold text-sm pb-2 line-clamp-2">
                     {nota.title}
                   </h4>
                   <p className="text-xs line-clamp-4">{nota.content}</p>
@@ -89,7 +89,7 @@ export const MobileHome = () => {
               className="p-4 rounded-lg shadow-sm border-violet-600 border-b-2"
             >
               <Link href={`/nota/${nota.id}`} className="w-full h-full">
-                <h5 className="font-semibold pb-2 line-clamp-1">
+                <h5 className="font-semibold pb-2 line-clamp-2">
                   {nota.title}
                 </h5>
                 <p className="text-xs line-clamp-2">{nota.content}</p>
