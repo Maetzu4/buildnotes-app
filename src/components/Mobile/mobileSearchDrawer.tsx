@@ -91,7 +91,9 @@ const MobileSearchDrawer: React.FC<MobileSearchDrawerProps> = ({
                   className="py-3 border-violet-600 border-b-2"
                 >
                   <Link href={`/nota/${note.id}`} className="w-full h-full">
-                    <h3 className="font-bold text-sm">{note.title}</h3>
+                    <h3 className="font-bold text-sm mb-1 line-clamp-1">
+                      {note.title}
+                    </h3>
                     <p className="text-xs line-clamp-2">{note.content}</p>
                   </Link>
                 </div>
