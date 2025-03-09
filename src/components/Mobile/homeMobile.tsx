@@ -29,7 +29,7 @@ export default function HomeMobile() {
   return (
     <div className="flex flex-col">
       {/* Contenido en medio */}
-      <div className="pb-10 pt-14 flex-1 px-4">
+      <div className="flex-1 px-4">
         {renderContent()} {/* Mostramos el contenido según la página activa */}
       </div>
 

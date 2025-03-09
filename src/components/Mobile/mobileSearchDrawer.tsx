@@ -56,11 +56,23 @@ const MobileSearchDrawer: React.FC<MobileSearchDrawerProps> = ({
 
   const handleCloseDrawer = () => {
     setIsOpen(false);
+    setSearchTerm(""); // Limpiar el input al cerrar el Drawer
+    setNotes([]); // Limpiar las notas al cerrar el Drawer
   };
 
   return (
-    <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerContent className="h-5/6 flex flex-col dark:bg-black">
+    <Drawer
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) {
+          // Si el Drawer se está cerrando, limpia el input y las notas
+          setSearchTerm("");
+          setNotes([]);
+        }
+        setIsOpen(open);
+      }}
+    >
+      <DrawerContent className="h-5/6 flex flex-col dark:bg-opacity-20 backdrop-blur-md dark:bg-black">
         {/* 75% de la altura de la pantalla y diseño flexible */}
         <DrawerHeader>
           <DrawerTitle>Buscar Notas</DrawerTitle>

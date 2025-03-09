@@ -52,7 +52,7 @@ export const MobileHome = () => {
     return <ErrorMessage message={error} />;
   }
   return (
-    <div className="overflow-auto p-4">
+    <div className="overflow-auto p-4 pb-16 pt-16">
       <div className="fixed top-0 left-0 w-full dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 pt-2 rounded-sm">
         <Profile Toggle={true} />
       </div>

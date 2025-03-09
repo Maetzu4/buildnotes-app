@@ -3,16 +3,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { CircleCheckBig } from "lucide-react";
+import { toast } from "sonner"; // Importar la función toast de sonner
 
 // Esquema de validación con Zod para el formulario
 const formSchema = z.object({
@@ -46,77 +41,75 @@ export function MobileNew() {
       });
 
       if (response.ok) {
-        alert("Nota creada con éxito");
+        // Mostrar notificación de éxito con Sonner
+        toast.success("Nota creada con éxito", {
+          description: "Tu nota ha sido guardada correctamente.",
+        });
         form.reset(); // Limpiar el formulario
       } else {
         const result = await response.json();
-        alert(`Error: ${result.error}`);
+        // Mostrar notificación de error con Sonner
+        toast.error("Error al crear la nota", {
+          description: result.error || "Hubo un problema al guardar la nota.",
+        });
       }
     } catch (error) {
       console.error("Error al crear la nota:", error);
-      alert("Hubo un problema al enviar la nota.");
+      // Mostrar notificación de error con Sonner
+      toast.error("Error", {
+        description: "Hubo un problema al enviar la nota.",
+      });
     }
   }
 
   return (
     <div className="p-4">
-      <div className="mb-4">
-        <h1 className="text-lg">Crear nueva nota (beta)</h1>
-      </div>
-
       {/* Formulario */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <div className="text-end">
+            <Button
+              size="lg"
+              type="submit"
+              className="bg-transparent hover:bg-transparent p-2 transition-transform duration-300 hover:scale-110"
+            >
+              <CircleCheckBig className="h-6 w-6" />
+            </Button>
+          </div>
+
           {/* Campo Título */}
           <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Título</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Escribe el título"
+                    placeholder="Título"
                     {...field}
-                    className="bg-transparent"
+                    className="bg-transparent border-none shadow-none focus-visible:ring-offset-0 focus-visible:ring-0 text-lg font-semibold"
                   />
                 </FormControl>
-                <FormDescription>
-                  Este será el título de tu nota.
-                </FormDescription>
-                <FormMessage>
-                  {form.formState.errors.title?.message}
-                </FormMessage>
               </FormItem>
             )}
           />
 
-          {/* Campo Contenido */}
+          {/* Campo Contenido (Textarea) */}
           <FormField
             control={form.control}
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contenido</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Escribe el contenido"
+                  <Textarea
+                    placeholder="Empieza a escribir aqui..."
                     {...field}
-                    className="bg-transparent"
+                    className="bg-transparent border-none shadow-none resize-none min-h-[300px] focus-visible:ring-offset-0 focus-visible:ring-0"
                   />
                 </FormControl>
-                <FormDescription>
-                  Este será el contenido de tu nota.
-                </FormDescription>
-                <FormMessage>
-                  {form.formState.errors.content?.message}
-                </FormMessage>
               </FormItem>
             )}
           />
-
-          {/* Botón de Enviar */}
-          <Button type="submit">Crear Nota</Button>
         </form>
       </Form>
     </div>
