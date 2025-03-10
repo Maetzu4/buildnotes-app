@@ -4,7 +4,6 @@ import Link from "next/link";
 import ErrorMessage from "../General/errorMessage";
 import { SkeletonMobileHome } from "../Skeletons/skeletonMobileHome";
 import { Profile } from "@/components/General/profile";
-import { SkeletonProfile } from "../Skeletons/skeletonProfile"; // Importar el SkeletonProfile
 
 export const MobileHome = () => {
   const [notas, setNotas] = useState<
