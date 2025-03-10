@@ -13,6 +13,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+interface Note {
+  id: string; // o number, dependiendo del tipo de ID que uses
+  title: string;
+  content: string;
+}
+
 interface MobileSearchDrawerProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
