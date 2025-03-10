@@ -4,9 +4,9 @@ import Link from "next/link";
 import ErrorMessage from "../General/errorMessage";
 import { SkeletonMobileHome } from "../Skeletons/skeletonMobileHome";
 import { Profile } from "@/components/General/profile";
+import { SkeletonProfile } from "../Skeletons/skeletonProfile"; // Importar el SkeletonProfile
 
 export const MobileHome = () => {
-  // Estado para almacenar las notas
   const [notas, setNotas] = useState<
     {
       id: number;
@@ -15,11 +15,10 @@ export const MobileHome = () => {
       updatedAt: string;
     }[]
   >([]);
-  const [loading, setLoading] = useState<boolean>(true); // Estado para controlar la carga
-  const [error, setError] = useState<string | null>(null); // Estado para manejar errores
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Función para obtener las notas de la API
     const fetchNotas = async () => {
       try {
         const response = await fetch("/api/notes");
@@ -34,27 +33,35 @@ export const MobileHome = () => {
         setLoading(false);
       }
     };
-    fetchNotas(); // Llamada para cargar las notas
-  }, []); // Solo se ejecuta una vez al montar el componente
-  // Ordenar las notas por la fecha de actualización (últimas 6 notas)
+    fetchNotas();
+  }, []);
+
   const notasOrdenadas = notas
     .sort(
       (a, b) =>
         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     )
-    .slice(0, 6); // Obtenemos solo las 6 últimas notas
-  // Ordenar todas las notas por id (de menor a mayor)
+    .slice(0, 6);
+
   const notasOrdenadasPorId = notas.sort((a, b) => a.id - b.id);
+
   if (loading) {
-    return <SkeletonMobileHome />; // Mostrar el Skeleton mientras se carga
+    return (
+      <div>
+        <SkeletonMobileHome /> {/* Skeleton para el resto del contenido */}
+      </div>
+    );
   }
+
   if (error) {
     return <ErrorMessage message={error} />;
   }
+
   return (
     <div className="overflow-auto p-4 pb-16 pt-16">
       <div className="fixed top-0 left-0 w-full dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 pt-2 rounded-sm">
         <Profile Toggle={true} />
+        {/* Mostrar el Profile real cuando no está cargando */}
       </div>
       <h3 className="text-3xl font-bold text-center">Buenas noches</h3>
       {/* Mostrar las notas recientes */}
@@ -86,7 +93,7 @@ export const MobileHome = () => {
           {notasOrdenadasPorId.map((nota) => (
             <li
               key={nota.id}
-              className="p-4 rounded-lg shadow-sm border-violet-600 border-b-2"
+              className="p-2 shadow-sm border-violet-600 border-b-2 rounded"
             >
               <Link href={`/nota/${nota.id}`} className="w-full h-full">
                 <h5 className="font-semibold mb-2 line-clamp-2">

@@ -23,12 +23,6 @@ const MobileSearchDrawer: React.FC<MobileSearchDrawerProps> = ({
   setIsOpen,
 }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
-  interface Note {
-    id: string;
-    title: string;
-    content: string;
-  }
-
   const [notes, setNotes] = React.useState<Note[]>([]); // Array para almacenar las notas filtradas
   const [loading, setLoading] = React.useState(false);
 
@@ -55,9 +49,10 @@ const MobileSearchDrawer: React.FC<MobileSearchDrawerProps> = ({
   };
 
   const handleCloseDrawer = () => {
+    // Reiniciar el estado antes de cerrar el Drawer
+    setSearchTerm("");
+    setNotes([]);
     setIsOpen(false);
-    setSearchTerm(""); // Limpiar el input al cerrar el Drawer
-    setNotes([]); // Limpiar las notas al cerrar el Drawer
   };
 
   return (
@@ -65,7 +60,7 @@ const MobileSearchDrawer: React.FC<MobileSearchDrawerProps> = ({
       open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
-          // Si el Drawer se está cerrando, limpia el input y las notas
+          // Si el Drawer se está cerrando, reiniciar el estado
           setSearchTerm("");
           setNotes([]);
         }
@@ -100,7 +95,7 @@ const MobileSearchDrawer: React.FC<MobileSearchDrawerProps> = ({
               {notes.map((note) => (
                 <div
                   key={note.id}
-                  className="py-3 border-violet-600 border-b-2"
+                  className="py-3 border-violet-600 border-b-2 rounded"
                 >
                   <Link href={`/nota/${note.id}`} className="w-full h-full">
                     <h3 className="font-bold text-sm mb-1 line-clamp-1">
