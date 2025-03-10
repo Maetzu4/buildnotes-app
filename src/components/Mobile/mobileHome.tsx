@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
 import ErrorMessage from "../General/errorMessage";
-import { SkeletonMobileHome } from "../Skeletons/skeletonMobileHome";
+import { SkeletonMobileHome } from "@/components/Skeletons/skeletonMobileHome";
 import { Profile } from "@/components/General/profile";
 
 export const MobileHome = () => {
@@ -16,7 +16,25 @@ export const MobileHome = () => {
   >([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const getSaludo = (): string => {
+    const horaActual = new Date().getHours();
 
+    if (horaActual >= 6 && horaActual < 12) {
+      return "Buenos días";
+    } else if (horaActual >= 12 && horaActual < 18) {
+      return "Buenas tardes";
+    } else {
+      return "Buenas noches";
+    }
+  };
+  const [saludo, setSaludo] = useState(getSaludo());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSaludo(getSaludo());
+    }, 60000); // Actualizar cada minuto
+
+    return () => clearInterval(interval); // Limpiar el intervalo al desmontar
+  }, []);
   useEffect(() => {
     const fetchNotas = async () => {
       try {
@@ -34,7 +52,6 @@ export const MobileHome = () => {
     };
     fetchNotas();
   }, []);
-
   const notasOrdenadas = notas
     .sort(
       (a, b) =>
@@ -43,7 +60,6 @@ export const MobileHome = () => {
     .slice(0, 6);
 
   const notasOrdenadasPorId = notas.sort((a, b) => a.id - b.id);
-
   if (loading) {
     return (
       <div>
@@ -51,18 +67,16 @@ export const MobileHome = () => {
       </div>
     );
   }
-
   if (error) {
     return <ErrorMessage message={error} />;
   }
-
   return (
     <div className="overflow-auto p-4 pb-16 pt-16">
       <div className="fixed top-0 left-0 w-full dark:bg-opacity-40 bg-opacity-40 backdrop-blur-md z-10 px-4 pt-2 rounded-sm">
         <Profile Toggle={true} />
-        {/* Mostrar el Profile real cuando no está cargando */}
       </div>
-      <h3 className="text-3xl font-bold text-center">Buenas noches</h3>
+      <h3 className="text-3xl font-bold text-center">{saludo}</h3>{" "}
+      {/* Mostrar el saludo dinámico */}
       {/* Mostrar las notas recientes */}
       <div className="mt-6">
         <h4 className="text-xl font-semibold">Recientes</h4>

@@ -1,14 +1,12 @@
-import HomeMobile from "@/components/Mobile/homeMobile";
+"use client";
 
+import { ResponsiveComponent } from "@/components/General/responsiveComponent";
+import HomeMobile from "@/components/Mobile/homeMobile";
+import HomeDesktop from "@/components/Desktop/homeDesk";
 export default function Home() {
   return (
     <div className="dark:text-white text-black">
-      <div className="sm:hidden">
-        <HomeMobile />
-      </div>
-      <div className="sm:block hidden">
-        <h2>HomeDesk</h2>
-      </div>
+      <ResponsiveComponent mobile={<HomeMobile />} desktop={<HomeDesktop />} />
     </div>
   );
 }
