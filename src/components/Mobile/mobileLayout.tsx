@@ -1,6 +1,6 @@
 "use client";
 import { MobileOptions } from "@/components/Mobile/mobileOptions";
-import { HomePage } from "@/components/Mobile/HomePage";
+import { HomePage } from "@/components/Mobile/homePage";
 import MobileSearchDrawer from "@/components/Mobile/mobileSearchDrawer";
 import { MobileSettings } from "@/components/Mobile/mobileSettings";
 import { MobileNew } from "@/components/Mobile/mobileNew";
