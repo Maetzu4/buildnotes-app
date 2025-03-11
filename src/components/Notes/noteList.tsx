@@ -1,14 +1,10 @@
-import Link from "next/link";
+import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-
-interface Note {
-  id: string;
-  title: string;
-  content: string;
-}
+import { NotaItem } from "@/components/Notes/notaItem";
+import { Nota } from "@/lib/types"; // Importar la interfaz
 
 interface NoteListProps {
-  notes: Note[];
+  notes: Nota[];
   loading: boolean;
   searchTerm: string;
 }
@@ -30,17 +26,7 @@ export const NoteList: React.FC<NoteListProps> = ({
     <ScrollArea className="flex-1 overflow-y-auto">
       <div className="px-2">
         {notes.map((note) => (
-          <div
-            key={note.id}
-            className="py-3 border-violet-600 border-b-2 rounded"
-          >
-            <Link href={`/nota/${note.id}`} className="w-full h-full">
-              <h3 className="font-bold text-sm mb-1 line-clamp-1">
-                {note.title}
-              </h3>
-              <p className="text-xs line-clamp-2">{note.content}</p>
-            </Link>
-          </div>
+          <NotaItem key={note.id} nota={note} />
         ))}
       </div>
     </ScrollArea>

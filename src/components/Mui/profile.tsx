@@ -1,8 +1,8 @@
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { ModeToggle } from "./modeToggle";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ModeToggle } from "@/components/Mui/modeToggle";
 import { Settings } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 interface ProfileProps {
   Toggle: boolean;

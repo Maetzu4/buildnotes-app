@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
-import { toast } from "sonner";
-
-interface Nota {
-  id: number;
-  title: string;
-  content: string;
-  updatedAt: string;
-}
+import { Nota } from "@/lib/types"; // Importar la interfaz Nota
 
 export const useNotas = () => {
   const [notas, setNotas] = useState<Nota[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedNotes, setSelectedNotes] = useState<number[]>([]);
 
@@ -45,18 +38,11 @@ export const useNotas = () => {
       if (response.ok) {
         setNotas(notas.filter((nota) => !selectedNotes.includes(nota.id)));
         setSelectedNotes([]);
-        toast.success("Notas eliminadas", {
-          description:
-            "Las notas seleccionadas se han eliminado correctamente.",
-        });
       } else {
         throw new Error("Error al eliminar las notas");
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Error al eliminar las notas", {
-        description: "Hubo un problema al eliminar las notas seleccionadas.",
-      });
     }
   };
 

@@ -12,7 +12,7 @@ const SkeletonNote: React.FC = () => (
   </div>
 );
 
-export const SkeletonMobileHome: React.FC = () => {
+export const SkeletonHomePage: React.FC = () => {
   return (
     <div className="overflow-auto p-4 pb-16 pt-16">
       {/* Skeleton para el Profile */}

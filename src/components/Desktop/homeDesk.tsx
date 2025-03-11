@@ -1,4 +1,4 @@
-import { Profile } from "@/components/General/profile";
+import { Profile } from "@/components/Mui/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,7 @@ import {
   Settings,
   Trash2,
 } from "lucide-react";
-import { ModeToggle } from "@/components/General/modeToggle";
+import { ModeToggle } from "@/components/Mui/modeToggle";
 
 export default function Home() {
   return (

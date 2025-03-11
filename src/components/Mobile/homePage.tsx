@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
-import ErrorMessage from "../General/errorMessage";
-import { SkeletonMobileHome } from "@/components/Skeletons/skeletonMobileHome";
-import { Profile } from "@/components/General/profile";
-import { ProfileToolbar } from "@/components/General/profileToolbar";
-import { useSaludo } from "@/hooks/useSaludo";
-import { useNotas } from "@/hooks/useNotas";
-import { useLongPress } from "@/hooks/useLongPress";
-import { NotasRecientes } from "@/components/General/notasRecientes";
-import { TodasLasNotas } from "@/components/General/todasLasNotas";
+import ErrorMessage from "@/components/Mui/errorMessage";
+import { SkeletonHomePage } from "@/components/Skeletons/skeletonHomePage";
+import { Profile } from "@/components/Mui/profile";
+import { ProfileToolbar } from "@/components/Mui/profileToolbar";
+import { useSaludo } from "@/hooks/ui/useSaludo";
+import { useNotas } from "@/hooks/Notesh/useNotas";
+import { useLongPress } from "@/hooks/Notesh/useLongPress";
+import { NotasRecientes } from "@/components/Notes/notasRecientes";
+import { TodasLasNotas } from "@/components/Notes/todasLasNotas";
 
-export const MobileHome: React.FC = () => {
+export const HomePage: React.FC = () => {
   const saludo = useSaludo();
   const {
     notas,
@@ -35,7 +35,8 @@ export const MobileHome: React.FC = () => {
   const notasOrdenadas = notas
     .sort(
       (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        new Date(b.updatedAt || new Date(0)).getTime() -
+        new Date(a.updatedAt || new Date(0)).getTime()
     )
     .slice(0, 6);
 
@@ -44,7 +45,7 @@ export const MobileHome: React.FC = () => {
   if (loading) {
     return (
       <div>
-        <SkeletonMobileHome /> {/* Skeleton para el resto del contenido */}
+        <SkeletonHomePage /> {/* Skeleton para el resto del contenido */}
       </div>
     );
   }

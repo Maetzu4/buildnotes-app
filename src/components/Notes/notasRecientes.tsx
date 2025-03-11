@@ -1,12 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-
-interface Nota {
-  id: number;
-  title: string;
-  content: string;
-}
+import { NotaItem } from "@/components/Notes/notaItem";
+import { Nota } from "@/lib/types"; // Importar la interfaz Nota
 
 interface NotasRecientesProps {
   notas: Nota[];
@@ -40,12 +35,10 @@ export const NotasRecientes: React.FC<NotasRecientesProps> = ({
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
             >
-              <Link href={`/nota/${nota.id}`} className="w-full h-full">
-                <h4 className="font-semibold text-sm mb-2 line-clamp-2">
-                  {nota.title}
-                </h4>
-                <p className="text-xs line-clamp-4">{nota.content}</p>
-              </Link>
+              <NotaItem
+                nota={nota}
+                isSelected={selectedNotes.includes(nota.id)}
+              />
             </div>
           ))}
         </div>

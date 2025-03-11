@@ -1,19 +1,14 @@
 import { useState } from "react";
-
-interface Note {
-  id: string; // o number, dependiendo del tipo de ID que uses
-  title: string;
-  content: string;
-}
+import { Nota } from "@/lib/types"; // Importar la interfaz
 
 export const useSearchNotes = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<Nota[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (term: string) => {
     if (term.trim() === "") {
-      setNotes([]); // Si el término de búsqueda está vacío, limpiar los resultados
+      setNotes([]);
       return;
     }
 
@@ -22,7 +17,7 @@ export const useSearchNotes = () => {
     try {
       const res = await fetch(`/api/notes?search=${term}`);
       const data = await res.json();
-      setNotes(data); // Guardar las notas filtradas en el estado
+      setNotes(data);
     } catch (error) {
       console.error("Error fetching notes:", error);
     } finally {

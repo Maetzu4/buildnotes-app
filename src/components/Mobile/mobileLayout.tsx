@@ -1,19 +1,19 @@
 "use client";
-import { useState } from "react";
 import { MobileOptions } from "@/components/Mobile/mobileOptions";
-import { MobileHome } from "@/components/Mobile/mobileHome";
+import { HomePage } from "@/components/Mobile/HomePage";
 import MobileSearchDrawer from "@/components/Mobile/mobileSearchDrawer";
 import { MobileSettings } from "@/components/Mobile/mobileSettings";
 import { MobileNew } from "@/components/Mobile/mobileNew";
+import { useMobileLayout } from "@/hooks/ui/useMobileLayout";
 
-export default function HomeMobile() {
-  const [activePage, setActivePage] = useState("home");
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+export default function MobileLayout() {
+  const { activePage, isDrawerOpen, setIsDrawerOpen, setActivePage } =
+    useMobileLayout();
 
   const renderContent = () => {
     switch (activePage) {
       case "home":
-        return <MobileHome />;
+        return <HomePage />;
       case "search":
         return (
           <MobileSearchDrawer
@@ -26,7 +26,7 @@ export default function HomeMobile() {
       case "book":
         return <MobileNew />;
       default:
-        return <MobileHome />;
+        return <HomePage />;
     }
   };
 
@@ -42,7 +42,7 @@ export default function HomeMobile() {
           setIsDrawerOpen={setIsDrawerOpen}
         />
       </div>
-      {/* Drawer de busqueda*/}
+      {/* Drawer de búsqueda */}
       <div className="z-50">
         <MobileSearchDrawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen} />
       </div>

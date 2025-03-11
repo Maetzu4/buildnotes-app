@@ -1,11 +1,14 @@
 "use client";
-import { ResponsiveComponent } from "@/components/General/responsiveComponent";
-import HomeMobile from "@/components/Mobile/homeMobile";
+import { ResponsiveComponent } from "@/components/Mui/responsiveComponent";
+import MobileLayout from "@/components/Mobile/mobileLayout";
 import HomeDesktop from "@/components/Desktop/homeDesk";
 export default function Home() {
   return (
     <div className="dark:text-white text-black">
-      <ResponsiveComponent mobile={<HomeMobile />} desktop={<HomeDesktop />} />
+      <ResponsiveComponent
+        mobile={<MobileLayout />}
+        desktop={<HomeDesktop />}
+      />
     </div>
   );
 }

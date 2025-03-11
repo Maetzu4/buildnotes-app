@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 import { Input } from "@/components/ui/input";
-import { useSearchNotes } from "@/hooks/useSearchNotes";
-import { NoteList } from "@/components/General/noteList";
-import { SearchDrawer } from "@/components/General/searchDrawer";
+import { useSearchNotes } from "@/hooks/Notesh/useSearchNotes";
+import { NoteList } from "@/components/Notes/noteList";
+import { SearchDrawer } from "@/components/Mui/searchDrawer";
 
 interface MobileSearchDrawerProps {
   isOpen: boolean;
