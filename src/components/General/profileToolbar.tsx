@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { Trash2 } from "lucide-react"; // Icono de borrar de Lucide
+import { Trash2 } from "lucide-react";
 
 interface ProfileToolbarProps {
   onDeleteNotes: () => void; // Función para borrar las notas seleccionadas
@@ -19,6 +19,7 @@ export const ProfileToolbar: React.FC<ProfileToolbarProps> = ({
         <Button
           onClick={onDeleteNotes}
           className="bg-transparent px-3 rounded-sm dark:text-white text-black"
+          aria-label="Eliminar notas seleccionadas"
         >
           <Trash2 /> {/* Icono de borrar */}
         </Button>

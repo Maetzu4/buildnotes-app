@@ -1,9 +1,18 @@
 import React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
-import { SkeletonProfile } from "./skeletonProfile"; // Importar el SkeletonProfile
+import { SkeletonProfile } from "./skeletonProfile";
 
-export const SkeletonMobileHome = () => {
+// Componente reutilizable para el esqueleto de una nota
+const SkeletonNote: React.FC = () => (
+  <div className="w-32 h-32 bg-slate-600 p-3 rounded-xl mr-4 mb-4">
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-full mt-4" />
+    <Skeleton className="h-4 w-full mt-1" />
+  </div>
+);
+
+export const SkeletonMobileHome: React.FC = () => {
   return (
     <div className="overflow-auto p-4 pb-16 pt-16">
       {/* Skeleton para el Profile */}
@@ -22,14 +31,7 @@ export const SkeletonMobileHome = () => {
             {Array(6)
               .fill(0)
               .map((_, index) => (
-                <div
-                  key={index}
-                  className="w-32 h-32 bg-slate-600 p-3 rounded-xl mr-4 mb-4"
-                >
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-4 w-full mt-4" />
-                  <Skeleton className="h-4 w-full mt-1" />
-                </div>
+                <SkeletonNote key={index} />
               ))}
           </div>
           <ScrollBar orientation="horizontal" />

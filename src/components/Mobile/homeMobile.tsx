@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { MobileOptions } from "@/components/Mobile/mobileOptions";
 import { MobileHome } from "@/components/Mobile/mobileHome";
