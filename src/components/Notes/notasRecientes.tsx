@@ -1,3 +1,4 @@
+// src/components/notes/notasRecientes.tsx
 import React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { NotaItem } from "@/components/Notes/notaItem";

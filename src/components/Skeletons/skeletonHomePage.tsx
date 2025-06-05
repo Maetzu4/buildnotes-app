@@ -1,7 +1,8 @@
+// src/components/Mobile/mobilelayout.tsx
 import React from "react";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Skeleton } from "@/components/ui/skeleton";
-import { SkeletonProfile } from "./skeletonProfile";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"; //componente de scroll de shadcn
+import { Skeleton } from "@/components/ui/skeleton"; //componente de skeleton de shadcn
+import { SkeletonProfile } from "./skeletonProfile"; // componente de skeleton del perfil
 
 // Componente reutilizable para el esqueleto de una nota
 const SkeletonNote: React.FC = () => (

@@ -1,17 +1,18 @@
+// src/components/Mobile/homePage.tsx
 "use client";
 import React from "react";
-import ErrorMessage from "@/components/Mui/errorMessage";
-import { SkeletonHomePage } from "@/components/Skeletons/skeletonHomePage";
-import { Profile } from "@/components/Mui/profile";
-import { ProfileToolbar } from "@/components/Mui/profileToolbar";
-import { useSaludo } from "@/hooks/ui/useSaludo";
-import { useNotas } from "@/hooks/Notesh/useNotas";
-import { useLongPress } from "@/hooks/Notesh/useLongPress";
-import { NotasRecientes } from "@/components/Notes/notasRecientes";
-import { TodasLasNotas } from "@/components/Notes/todasLasNotas";
+import ErrorMessage from "@/components/Mui/errorMessage"; // componente para mostrar los mensajes de error
+import { SkeletonHomePage } from "@/components/Skeletons/skeletonHomePage"; // componente para mostrar los skeletons mientras cargan los datos
+import { Profile } from "@/components/Mui/profile"; // componente del perfil para el home
+import { ProfileToolbar } from "@/components/Mui/profileToolbar"; // componente para la barra de herramientas del perfil
+import { useSaludo } from "@/hooks/ui/useSaludo"; // hook para tener un saludo dinamico
+import { useNotas } from "@/hooks/Notesh/useNotas"; // hook para manejar las notas
+import { useLongPress } from "@/hooks/Notesh/useLongPress"; // hook para manejar las pulsaciones y las acciones en las notas
+import { NotasRecientes } from "@/components/Notes/notasRecientes"; // componente para mostrar las notas recientes
+import { TodasLasNotas } from "@/components/Notes/todasLasNotas"; // componente para mostrar todas las notas
 
 export const HomePage: React.FC = () => {
-  const saludo = useSaludo();
+  const saludo = useSaludo(); // llamado del hook saludo
   const {
     notas,
     loading,
@@ -19,7 +20,8 @@ export const HomePage: React.FC = () => {
     selectedNotes,
     setSelectedNotes,
     handleDeleteNotes,
-  } = useNotas();
+  } = useNotas(); // optencion de los datos de las notas  y sus estados
+  // manejo de las pulsaciones largas en las notas
   const { start: handleLongPressStart, end: handleLongPressEnd } = useLongPress(
     (id: number) => {
       setSelectedNotes((prev) =>
@@ -51,7 +53,7 @@ export const HomePage: React.FC = () => {
   }
 
   if (error) {
-    return <ErrorMessage message={error} />;
+    return <ErrorMessage message={error} />; // manejo de errores
   }
 
   return (

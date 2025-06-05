@@ -1,5 +1,6 @@
+// hooks/ui/useSaludo.tsx
 import { useState, useEffect } from "react";
-
+//saludo de acuerdo a la hora del dia
 const getSaludo = (): string => {
   const horaActual = new Date().getHours();
 
@@ -11,7 +12,7 @@ const getSaludo = (): string => {
     return "Buenas noches";
   }
 };
-
+//funcion que retorna el saludo
 export const useSaludo = (): string => {
   const [saludo, setSaludo] = useState<string>(getSaludo());
 

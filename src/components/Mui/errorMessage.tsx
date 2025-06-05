@@ -1,8 +1,9 @@
+// src/components/mobile/errorMessage.tsx
 import React from "react";
 
 interface ErrorMessageProps {
   message: string;
-  type?: "error" | "warning" | "success"; // Tipo de mensaje (opcional)
+  type?: "error" | "warning" | "success"; // Tipo de mensaje opcional
 }
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({
@@ -23,6 +24,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="text-center p-6 shadow-lg rounded-lg">
+        {/* mensaje a retornar */}
         <p className={`font-bold text-xl ${getColor()}`}>{message}</p>
       </div>
     </div>

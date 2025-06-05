@@ -1,3 +1,4 @@
+// hooks/ui/useSaludo.tsx
 import { useState, useEffect } from "react";
 import { Nota } from "@/lib/types"; // Importar la interfaz Nota
 
